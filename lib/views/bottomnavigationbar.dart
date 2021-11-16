@@ -34,17 +34,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Inicio',
-            backgroundColor: Color(0xffA2E683),
+            backgroundColor: Color(0xff56AB2F),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Buscar',
-            backgroundColor: Color(0xff70E03D),
+            backgroundColor: Color(0xff56AB2F),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_numbered),
             label: 'Pedidos',
-            backgroundColor: Color(0xff57AD2F),
+            backgroundColor: Color(0xff56AB2F),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
