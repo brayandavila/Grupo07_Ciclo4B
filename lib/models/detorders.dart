@@ -3,13 +3,15 @@ class Detorders {
   String id_products_detorders;
   int amount_detorders;
   int total_detorders;
+  String id_orders_detorders;
 
 
   Detorders(
       {required this.id_detorders,
       required this.id_products_detorders,
       required this.amount_detorders,
-      required this.total_detorders});
+      required this.total_detorders,
+      required this.id_orders_detorders});
 }
 
 class DetordersDao {
@@ -18,6 +20,7 @@ class DetordersDao {
         id_detorders: '1',
         id_products_detorders: '1',
         amount_detorders: 2,
-        total_detorders: 25000)
+        total_detorders: 25000,
+        id_orders_detorders: '1')
   ];
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'bottomnavigationbar.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.only(left: 50, right: 50),
         child: Center(
@@ -15,9 +16,11 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Image.asset(
                   'images/logo.png',
-                  width: 150,
-                  height: 150,
+                  width: 250,
                   fit: BoxFit.cover,
+                ),
+                const SizedBox(
+                  height: 40,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
@@ -74,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => MyStatefulWidget(key: key)),
                       );
                     },
-                    color: Colors.blue,
+                    color: const Color(0xff56ab2f),
                     child: const Text(
                       'Iniciar sesión',
                       style: TextStyle(
@@ -115,85 +118,3 @@ class LoginScreen extends StatelessWidget {
 }
 
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Inicio',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Buscar',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Pedidos',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Perfil',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tyfon App'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-          )
-        ],
-        centerTitle: true,
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
-            backgroundColor: Colors.deepOrangeAccent,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Buscar',
-            backgroundColor: Colors.orangeAccent,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.format_list_numbered),
-            label: 'Pedidos',
-            backgroundColor: Colors.amberAccent,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-            backgroundColor: Colors.redAccent,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black45,
-        onTap: _onItemTapped,
-      ),
-    );
-  }
-}
