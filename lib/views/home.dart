@@ -15,43 +15,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late Future<List<Products>> _futureProduct;
 
-  Future<List<Products>> _getProduct() async {
-    final response = await http.get(Uri.parse('https://script.google.com/macros/s/AKfycbyTPUvDMYPXyv2CIkAq6jf1_1RCtb7tPghjkGMO1lUczdZW-N8q/exec?&acc=1&tbl=Products'));
-    List<Products> product = [];
-    if (response.statusCode == 200) {
-      String body = utf8.decode(response.bodyBytes);
-      final jsonData = jsonDecode(body);
-      for(var item in jsonData["data"]){
-        product.add(
-          Products(
-              item["id_products"],
-              item["name_products"],
-              item["id_business_products"],
-              item["price_products"])
-        );
-      }
-      print(product);
-      return product;
-    } else {
-      throw Exception('Falló');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    _futureProduct = _getProduct();
+    _futureProduct = getProduct();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Productos',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+
+      return Scaffold(
         appBar: AppBar(
           title: const Text('Listado de Productos'),
         ),
@@ -70,14 +43,22 @@ class _HomeState extends State<Home> {
             );
           },
         ),
-      ),
-    );
+      );
   }
   List<Widget> _listProducts(data){
     List<Widget> products = [];
     for (var product in data) {
       products.add(
-        Text(product.name_products),
+        Card(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(product.name_products),
+              ),
+            ],
+          ),
+        ),
       );
     }
     return products;
