@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Products {
-  final int id_products;
-  final String name_products;
-  final int id_business_products;
-  final double price_products;
+  final int idProducts;
+  final String nameProducts;
+  final int idBusinessProducts;
+  final int priceProducts;
 
   Products(
-      this.id_products,
-      this.name_products,
-      this.id_business_products,
-      this.price_products
+      this.idProducts,
+      this.nameProducts,
+      this.idBusinessProducts,
+      this.priceProducts
       );
 }
 
@@ -30,7 +30,6 @@ Future<List<Products>> getProduct() async {
               item["price_products"])
       );
     }
-    print(product);
     return product;
   } else {
     throw Exception('Falló');

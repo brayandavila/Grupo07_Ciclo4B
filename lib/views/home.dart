@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto/models/products.dart';
 import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -32,11 +30,15 @@ class _HomeState extends State<Home> {
           future: _futureProduct,
           builder: (context, snapshot) {
             if(snapshot.hasData){
-              return ListView(
-                children: _listProducts(snapshot.data),
+              return ListView.builder(
+                itemCount: _listProducts(snapshot.data).length,
+                itemBuilder: (context, index) {
+                  final item = _listProducts(snapshot.data)[index];
+                  return item;
+                },
               );
             } else if (snapshot.hasError){
-              print(snapshot.error);
+              Text('$snapshot.error');
             }
             return const Center(
               child: CircularProgressIndicator(),

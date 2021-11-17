@@ -1,18 +1,20 @@
 class Orders {
-  String id_orders;
-  String user_clients_orders;
-  int total_orders;
+  String idOrders;
+  String userClientsOrders;
+  int totalOrders;
 
 
-  Orders({required this.id_orders,
-    required this.user_clients_orders,
-    required this.total_orders});
+  Orders({
+    required this.idOrders,
+    required this.userClientsOrders,
+    required this.totalOrders});
 }
 
 class OrdersDAO {
   List <Orders> orders = [
-    Orders(id_orders: '1',
-        user_clients_orders: 'brayandavila',
-        total_orders: 25000)
+    Orders(
+        idOrders: '1',
+        userClientsOrders: 'brayandavila',
+        totalOrders: 25000)
   ];
 }

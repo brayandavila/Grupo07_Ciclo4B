@@ -48,7 +48,6 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        print('ok');
                       },
                       child: Text(
                         '¿Olvidaste tu contraseña?',
@@ -102,7 +101,6 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        print('Ok');
                       },
                       child: const Text('Regístrate'),
                     )

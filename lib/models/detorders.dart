@@ -1,26 +1,26 @@
 class Detorders {
-  String id_detorders;
-  String id_products_detorders;
-  int amount_detorders;
-  int total_detorders;
-  String id_orders_detorders;
+  String idDetorders;
+  String idProductsDetorders;
+  int amountDetorders;
+  int totalDetorders;
+  String idOrdersDetorders;
 
 
   Detorders(
-      {required this.id_detorders,
-      required this.id_products_detorders,
-      required this.amount_detorders,
-      required this.total_detorders,
-      required this.id_orders_detorders});
+      {required this.idDetorders,
+      required this.idProductsDetorders,
+      required this.amountDetorders,
+      required this.totalDetorders,
+      required this.idOrdersDetorders});
 }
 
 class DetordersDao {
   List <Detorders> detorders = [
     Detorders(
-        id_detorders: '1',
-        id_products_detorders: '1',
-        amount_detorders: 2,
-        total_detorders: 25000,
-        id_orders_detorders: '1')
+        idDetorders: '1',
+        idProductsDetorders: '1',
+        amountDetorders: 2,
+        totalDetorders: 25000,
+        idOrdersDetorders: '1')
   ];
 }
