@@ -26,6 +26,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white.withOpacity(.60),
+        backgroundColor: Colors.green,
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

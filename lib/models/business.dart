@@ -1,46 +1,68 @@
-
-enum product_c {
-  //imagino que acá se llama al modelo de productos
-  restaurante, perroCaliente
-}
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Business {
-  String idBusiness;
+  final String idBusiness;
   String nameBusiness;
   String addressBusiness;
   String geolocationBusiness;
   String landlineBusiness;
   String phoneBusiness;
   String websiteBusiness;
-  product_c categoryBusiness;
+  String categoryBusiness;
   String logoBusiness;
   String photoBusiness;
 
-  Business({
-    required this.idBusiness,
-    required this.nameBusiness,
-    required this.addressBusiness,
-    required this.geolocationBusiness,
-    required this.landlineBusiness,
-    required this.phoneBusiness,
-    required this.websiteBusiness,
-    required this.categoryBusiness,
-    required this.logoBusiness,
-    required this.photoBusiness});
+  Business(
+      this.idBusiness,
+      this.nameBusiness,
+      this.addressBusiness,
+      this.geolocationBusiness,
+      this.landlineBusiness,
+      this.phoneBusiness,
+      this.websiteBusiness,
+      this.categoryBusiness,
+      this.logoBusiness,
+      this.photoBusiness);
 }
 
-class BusinessDAO {
-  List <Business> business = [
-    Business(//y supongo que aquí llamamos un .cvs o algo así
-        idBusiness: '1',
-        nameBusiness: 'AlRock',
-        addressBusiness: 'Calle 105 # 26 - 93',
-        geolocationBusiness: '7.087986918362485, -73.1091913345132',
-        landlineBusiness: '+5776368888',
-        phoneBusiness: '315 695 8555',
-        websiteBusiness: 'https://www.instagram.com/alrock_burger/?hl=es-la',
-        categoryBusiness: product_c.restaurante,
-        logoBusiness: 'logoalrock.png',
-        photoBusiness: 'photoalrock.png')
-  ];
+const url =
+    'https://script.google.com/macros/s/AKfycbzFqNfaEZxCWLs-4l7a8pgyiKpd8Cs8T0yc6fSLJckraKT-vsFsk8Sv7lVKi5FJP1PVWA/exec?';
+
+Future<List<Business>> getBusiness() async {
+  final response = await http.get(Uri.parse(url + '&acc=1&tbl=Business'));
+  List<Business> business = [];
+  if (response.statusCode == 200) {
+    String body = utf8.decode(response.bodyBytes);
+    final jsonData = jsonDecode(body);
+    for (var item in jsonData["data"]) {
+      business.add(Business(
+        item["id_business"].toString(),
+        item["name_business"].toString(),
+        item["address_business"].toString(),
+        item["geolocation_business"].toString(),
+        item["landline_business"].toString(),
+        item["phone_business"].toString(),
+        item["website_business"].toString(),
+        item["category_business"].toString(),
+        item["logo_business"].toString(),
+        item["photo_business"].toString(),
+      ));
+    }
+    return business;
+  } else {
+    throw Exception('Falló al obtener productos');
+  }
+}
+
+Future<List> getSearchBusiness(query) async {
+  final response =
+      await http.get(Uri.parse(url + '&acc=3&tbl=Business&query=' + query));
+  if (response.statusCode == 200) {
+    var convertJSON = jsonDecode(response.body);
+    var result = convertJSON["data"];
+    return result;
+  } else {
+    throw Exception('Falló la búsqueda');
+  }
 }
