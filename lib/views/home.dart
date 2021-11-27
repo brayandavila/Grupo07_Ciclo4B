@@ -12,9 +12,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
       return const Scaffold(
-        body: Text('Home')
+        body: Center(child: Text('Home', style: TextStyle(fontSize: 40, color: Color(0xffF4A53C),)),)
       );
   }
 }

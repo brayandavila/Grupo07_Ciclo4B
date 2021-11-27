@@ -1,18 +1,19 @@
 // ignore_for_file: unused_field, prefer_final_fields
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto/models/business.dart';
 import 'package:flutter_proyecto/views/businessview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Businesslist extends StatefulWidget {
-  const Businesslist({Key? key}) : super(key: key);
+class Businessforcategory extends StatefulWidget {
+  final String category;
+  const Businessforcategory(this.category, { Key? key }) : super(key: key);
 
   @override
-  _BusinesslistState createState() => _BusinesslistState();
+  _BusinessforcategoryState createState() => _BusinessforcategoryState();
 }
 
-class _BusinesslistState extends State<Businesslist> {
+class _BusinessforcategoryState extends State<Businessforcategory> {
   bool _hasCallSupport = false;
   Future<void>? _launched;
   String _phone = '';
@@ -40,9 +41,9 @@ class _BusinesslistState extends State<Businesslist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Tiendas',
-          style: TextStyle(color: Colors.white70),
+        title: Text(
+          widget.category,
+          style: const TextStyle(color: Colors.white70),
         ),
         foregroundColor: Colors.white,
         bottomOpacity: 0.0,
@@ -50,7 +51,7 @@ class _BusinesslistState extends State<Businesslist> {
         backgroundColor: const Color(0xff13121D),
       ),
       body: FutureBuilder(
-        future: getBusiness(),
+        future: getBusinessforcategory(widget.category),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -69,8 +70,12 @@ class _BusinesslistState extends State<Businesslist> {
         },
       ),
     );
+    /* return Center(
+      child: Text(widget.category),
+    ); */
   }
 
+  
   List<Widget> _listBusiness(data) {
     List<Widget> business = [];
     for (var business1 in data) {

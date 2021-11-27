@@ -27,31 +27,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
+        elevation: 0,
+        selectedItemColor: const Color(0xffF2A03D),
         unselectedItemColor: Colors.white.withOpacity(.60),
-        backgroundColor: Colors.green,
-        selectedFontSize: 14,
+        backgroundColor: const Color(0xff13121D),
+        selectedFontSize: 15,
         unselectedFontSize: 14,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Inicio',
-            backgroundColor: Color(0xff56AB2F),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Buscar',
-            backgroundColor: Color(0xff56AB2F),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_numbered),
             label: 'Pedidos',
-            backgroundColor: Color(0xff56AB2F),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Perfil',
-            backgroundColor: Color(0xff56AB2F),
           ),
         ],
         currentIndex: _selectedIndex,

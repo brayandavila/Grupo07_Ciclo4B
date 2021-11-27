@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class Clients {
   String nameClients;
   String addressClients;
@@ -15,14 +18,23 @@ class Clients {
     required this.passwordClients});
 }
 
-class ClientsDAO {
-  List <Clients> clients = [
-    Clients(
-        nameClients: 'Brayan Dávila',
-        addressClients: 'Calle 65 # 25 - 31',
-        landlineClients: '6979212',
-        phoneClients: '3203636390',
-        userClients: 'brayandavila',
-        passwordClients: '12345678')
-  ];
+const url =
+  'https://script.google.com/macros/s/AKfycbxqEKrn1jj9UwC6Fhzl42Rl9zO-GsIdJ6ITu_FqsLBG38iFCcWL6U6_tL0C-73kRzB0LQ/exec?';
+
+Future getLogin(user, pass) async {
+  final response = await http.get(Uri.parse(url + '&acc=7&user=' + user + '&pass=' + pass));
+  var validation ='';
+  if (response.statusCode == 200) {
+    var jsonData = jsonDecode(response.body);
+    String temp = jsonData[1].toString();
+    if (temp == 'n'){
+      validation = 'true';
+    } else if (temp == 'f'){
+      validation = 'false';
+    }
+    //print(validation);
+    return validation;
+  } else {
+    throw Exception('Falló el LogIn');
+  }
 }

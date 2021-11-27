@@ -16,8 +16,11 @@ class _ProductslistState extends State<Productslist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Productos'),
-        backgroundColor: Colors.green,
+        title: const Text('Productos', style: TextStyle(color: Colors.white70),),
+        foregroundColor: Colors.white,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        backgroundColor: const Color(0xff13121D),
       ),
       body: FutureBuilder(
         future: getProduct(),
@@ -37,7 +40,7 @@ class _ProductslistState extends State<Productslist> {
             child: CircularProgressIndicator(),
           );
         },
-      ),
+      ),      
     );
   }
 
@@ -49,17 +52,16 @@ class _ProductslistState extends State<Productslist> {
       var productData = [product.idProducts, product.nameProducts, product.idBusinessProducts, product.priceProducts];
       products.add(
         Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
+          color: Colors.transparent,
           margin: const EdgeInsets.all(10),
-          elevation: 8,
+          elevation: 0,
           child: Column(
             children: <Widget>[        
               Column(
                 children: [
                   ListTile(
-                    title: Text(product.nameProducts),
-                    subtitle: Text(precio2),
+                    title: Text(product.nameProducts, style: const TextStyle(color: Colors.white70),),
+                    subtitle: Text(precio2, style: const TextStyle(color: Colors.green),),
                     leading: GestureDetector(
                       onTap: (){
                         var idB = [product.idBusinessProducts, 'Falta traer Business'];
@@ -68,16 +70,13 @@ class _ProductslistState extends State<Productslist> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(40),
                         child: Image.network('https://i.pinimg.com/564x/7d/66/6c/7d666cc9a54d44cd9e74371ee99bd703.jpg'),
-                      ),
+                      ),                    
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Image.network('https://okdiario.com/img/2021/05/28/hamburguesa-3.jpg')
-                      ),
-                    ],
-                  ),
+                    trailing: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network('https://okdiario.com/img/2021/05/28/hamburguesa-3.jpg'),
+                    ),
+                  ),                  
                   const SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,20 +90,18 @@ class _ProductslistState extends State<Productslist> {
                             child: const Text('VER'),
                           ),
                           TextButton(
-                            onPressed: (){}, 
+                            onPressed: (){
+                              cart(productData);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Producto agregado con éxito'),                                  
+                                ),
+                              );
+                            }, 
                             child: const Text('AGREGAR'),
                           ),
                         ],
                       ),
-                      Row(
-                        children: const [
-                          Icon(Icons.favorite, color: Colors.red,),
-                          SizedBox(width: 5,),
-                          Icon(Icons.share),
-                          SizedBox(width: 5,),
-                        ],
-                      ),
-                      
                     ],
                   ),
                   const SizedBox(height: 15,)

@@ -27,7 +27,7 @@ class Business {
 }
 
 const url =
-    'https://script.google.com/macros/s/AKfycbzFqNfaEZxCWLs-4l7a8pgyiKpd8Cs8T0yc6fSLJckraKT-vsFsk8Sv7lVKi5FJP1PVWA/exec?';
+    'https://script.google.com/macros/s/AKfycbylEWkWAsoJ2r0d7OEUSGwEmrbqv0XlqGa6qFuKGKBAb1oEOGG7iB7Kyf4MNg-0fy4WXQ/exec?';
 
 Future<List<Business>> getBusiness() async {
   final response = await http.get(Uri.parse(url + '&acc=1&tbl=Business'));
@@ -64,5 +64,31 @@ Future<List> getSearchBusiness(query) async {
     return result;
   } else {
     throw Exception('Falló la búsqueda');
+  }
+}
+
+Future<List<Business>> getBusinessforcategory(cat) async {
+  final response = await http.get(Uri.parse(url + '&acc=6&category=' + cat));
+  List<Business> business = [];
+  if (response.statusCode == 200) {
+    String body = utf8.decode(response.bodyBytes);
+    final jsonData = jsonDecode(body);
+    for (var item in jsonData["data"]) {
+      business.add(Business(
+        item["id_business"].toString(),
+        item["name_business"].toString(),
+        item["address_business"].toString(),
+        item["geolocation_business"].toString(),
+        item["landline_business"].toString(),
+        item["phone_business"].toString(),
+        item["website_business"].toString(),
+        item["category_business"].toString(),
+        item["logo_business"].toString(),
+        item["photo_business"].toString(),
+      ));
+    }
+    return business;
+  } else {
+    throw Exception('Falló al obtener productos');
   }
 }

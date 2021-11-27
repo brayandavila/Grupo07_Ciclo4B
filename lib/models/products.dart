@@ -12,7 +12,7 @@ class Products {
 }
 
 const url =
-    'https://script.google.com/macros/s/AKfycbzFqNfaEZxCWLs-4l7a8pgyiKpd8Cs8T0yc6fSLJckraKT-vsFsk8Sv7lVKi5FJP1PVWA/exec?';
+    'https://script.google.com/macros/s/AKfycbylEWkWAsoJ2r0d7OEUSGwEmrbqv0XlqGa6qFuKGKBAb1oEOGG7iB7Kyf4MNg-0fy4WXQ/exec?';
 
 Future<List<Products>> getProduct() async {
   final response = await http.get(Uri.parse(url + '&acc=1&tbl=Products'));
@@ -42,7 +42,6 @@ Future<List> getSearch(query) async {
   }
 }
 
-
 Future<List> getProductsBusiness(idB) async {
   final response =
       await http.get(Uri.parse(url + '&acc=4&idB=' + idB));
@@ -54,3 +53,50 @@ Future<List> getProductsBusiness(idB) async {
     throw Exception('Falló la búsqueda');
   }
 }
+List<String> ids = [];
+List<int> precios = [];
+List<Products> product = [] ;
+Future<List<Products>> cart(add1) async {  
+  totalito = totalito + add1[3];
+  ids.add(add1[0].toString());
+  precios.add(add1[3]);
+  if (add1 != null){    
+    product.add(
+      Products(
+        add1[0], 
+        add1[1], 
+        add1[2], 
+        add1[3],
+      )
+    ); 
+  return product;
+  } else {
+    throw Exception('Falló al obtener productos');
+  }
+}
+num totalito = 0;
+
+Future<List<void>> getOrder() async {
+  return product;
+}
+
+deleteProduct(id){
+  int position = 0;
+  for (var i = 0; i < ids.length; i++){
+    if (id.toString() == ids[i].toString()){
+      position = i;      
+    } 
+  }//función wasa wasa
+  for (var j = 0; j < product.length; j++){
+    if (j == position){
+      product.remove(product[j]);
+      totalito = totalito - precios[j];
+      print(product);
+    }
+  }
+  print(position);
+  return position;
+  //corregir el numero de la posicion
+}
+
+ 

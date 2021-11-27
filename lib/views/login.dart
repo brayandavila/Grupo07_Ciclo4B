@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_proyecto/views/profilebusiness.dart';
+import 'package:flutter_proyecto/views/recoverpass.dart';
 import 'bottomnavigationbar.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -24,10 +25,30 @@ class LoginScreen extends StatelessWidget {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelStyle: const TextStyle(
+                      color: Colors.white70,
+                    ),
                     labelText: 'Usuario',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffF4A53C),
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffF4A53C),
+                        width: 2.0,
+                      ),
+                    ),
+                    prefixIcon: const Icon(
+                      Icons.person,
+                      color: Color(0xffF4A53C),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -36,11 +57,31 @@ class LoginScreen extends StatelessWidget {
                 TextFormField(
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  decoration: const InputDecoration(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelStyle: const TextStyle(
+                      color: Colors.white70,
+                    ),
                     labelText: 'Contraseña',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock),
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffF4A53C),
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      borderSide: const BorderSide(
+                        color: Color(0xffF4A53C),
+                        width: 2.0,
+                      ),
+                    ),
+                    prefixIcon: const Icon(
+                      Icons.lock,
+                      color: Color(0xffF4A53C),
+                    ),
+                    //suffixIcon: const Icon(Icons.remove_red_eye),
                   ),
                 ),
                 Row(
@@ -48,11 +89,16 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Recoverpass(key: key)),
+                        );
                       },
-                      child: Text(
+                      child: const Text(
                         '¿Olvidaste tu contraseña?',
                         style: TextStyle(
-                          color: Colors.black.withOpacity(0.4),
+                          color: Colors.white70,
                           fontSize: 12.0,
                         ),
                       ),
@@ -73,35 +119,65 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyStatefulWidget(key: key)),
+                        MaterialPageRoute(
+                            builder: (context) => MyStatefulWidget(key: key)),
                       );
                     },
-                    color: const Color(0xff56ab2f),
+                    color: const Color(0xffF4A53C),
                     child: const Text(
                       'Iniciar sesión',
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.white,
+                        color: Colors.white70,
                       ),
                     ),
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Profilebusiness(key: key)),
+                        );
+                      },
+                      child: const Text(
+                        '¿Eres una tienda? Ingresa aquí',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),                
+                /* TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Pruebas()),
+                      );
+                    },
+                    child: const Text('Validar Login')), */
                 const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       '''¿Aún no tienes cuenta?''',
                       style: TextStyle(
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.white70,
                         fontSize: 16.0,
                       ),
                     ),
                     TextButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       child: const Text('Regístrate'),
                     )
                   ],
@@ -114,5 +190,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-

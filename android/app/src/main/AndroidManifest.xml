@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.unbosque.flutterproyecto.flutter_proyecto">
    <application
-        android:label="flutter_proyecto"
+        android:label="Tyfon"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

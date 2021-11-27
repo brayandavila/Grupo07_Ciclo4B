@@ -1,12 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto/views/login.dart';
-import 'package:flutter_proyecto/views/orderlist.dart';
-import 'package:flutter_proyecto/views/personalinformation.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class Profilebusiness extends StatefulWidget {
+  const Profilebusiness({ Key? key }) : super(key: key);
 
+  @override
+  _ProfilebusinessState createState() => _ProfilebusinessState();
+}
+
+class _ProfilebusinessState extends State<Profilebusiness> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +37,7 @@ class Profile extends StatelessWidget {
                 height: 20,
               ),
               const Text(
-                "Brayan Dávila",
+                "Nombre del negocio",
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.white,
@@ -55,37 +57,37 @@ class Profile extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                       /*  Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const Personalinformation()));
+                                    const Personalinformation())); */
                       },
                       child: const ListTile(
                         title: Text(
-                          'Información personal',
+                          'Información de mi tienda',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         leading: Icon(
-                          Icons.person,
+                          Icons.business,
                           color: Color(0xffF4A53C),
                         ),
                       ),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                        /* Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Orderlist()));
+                                builder: (context) => const Orderlist())); */
                       },
                       child: const ListTile(
                         title: Text(
-                          'Mis pedidos',
+                          'Mis productos',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         leading: Icon(
-                          Icons.format_list_numbered,
+                          Icons.article,
                           color: Color(0xffF4A53C),
                         ),
                       ),
@@ -108,12 +110,12 @@ class Profile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    GestureDetector(                      
+                    GestureDetector(
                       onTap: () => showDialog<String>(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text('ELIMINAR CUENTA'),
-                          content: const Text('¿Está seguro de eliminar su cuenta? Esta acción borrará todos sus datos'),
+                          title: const Text('ELIMINAR TIENDA'),
+                          content: const Text('¿Está seguro de eliminar su tienda? Esta acción borrará todos sus datos'),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () => Navigator.pop(context, 'CANCELAR'),
@@ -128,7 +130,7 @@ class Profile extends StatelessWidget {
                       ),
                       child: const ListTile(
                         title: Text(
-                          'Eliminar cuenta',
+                          'Eliminar mi tienda',
                           style: TextStyle(color: Colors.red, fontSize: 20),
                         ),
                         leading: Icon(
@@ -143,7 +145,5 @@ class Profile extends StatelessWidget {
             ],
           ),
         ));
-    //const Center(
-    //child: Text("Mis datos \n Mis pedidos\n Cerrar sesión \n Darme de baja")
   }
 }
