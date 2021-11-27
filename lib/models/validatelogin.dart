@@ -1,27 +1,21 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class Clients {
-  String nameClients;
-  String addressClients;
-  String landlineClients;
-  String phoneClients;
-  String userClients;
-  String passwordClients;
+var usuario;
+var contrasena;
 
-
-  Clients({required this.nameClients,
-    required this.addressClients,
-    required this.landlineClients,
-    required this.phoneClients,
-    required this.userClients,
-    required this.passwordClients});
+getUserPass(user, pass){
+  usuario = user;
+  contrasena = pass;
+  print(user);
+  print(pass);
 }
 
 const url =
   'https://script.google.com/macros/s/AKfycbxqEKrn1jj9UwC6Fhzl42Rl9zO-GsIdJ6ITu_FqsLBG38iFCcWL6U6_tL0C-73kRzB0LQ/exec?';
 
-/* Future getLogin(user, pass) async {
+Future getLogin(user, pass) async {
+
   final response = await http.get(Uri.parse(url + '&acc=7&user=' + user + '&pass=' + pass));
   var validation ='';
   if (response.statusCode == 200) {
@@ -37,4 +31,4 @@ const url =
   } else {
     throw Exception('Falló el LogIn');
   }
-} */
+}

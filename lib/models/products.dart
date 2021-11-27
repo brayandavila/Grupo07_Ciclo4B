@@ -90,13 +90,12 @@ deleteProduct(id){
   for (var j = 0; j < product.length; j++){
     if (j == position){
       product.remove(product[j]);
+      ids.remove(ids[j]);
       totalito = totalito - precios[j];
-      print(product);
+      precios.remove(precios[j]);
     }
   }
-  print(position);
   return position;
-  //corregir el numero de la posicion
 }
 
  

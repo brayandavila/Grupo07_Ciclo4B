@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_proyecto/models/validatelogin.dart';
-import 'package:flutter_proyecto/views/loginbusiness.dart';
+import 'package:flutter_proyecto/views/login.dart';
+import 'package:flutter_proyecto/views/profilebusiness.dart';
 import 'package:flutter_proyecto/views/recoverpass.dart';
-import 'bottomnavigationbar.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({ Key? key }) : super(key: key);
+class Loginbusiness extends StatefulWidget {
+  const Loginbusiness({ Key? key }) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginbusinessState createState() => _LoginbusinessState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final myControllerUsuario = TextEditingController();
-  final myControllerPassword = TextEditingController();
-
-  @override
-  void dispose() {
-    myControllerUsuario.dispose();
-    myControllerPassword.dispose();
-    super.dispose();
-  }
-
+class _LoginbusinessState extends State<Loginbusiness> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +29,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 40,
                 ),
                 TextFormField(
-                  controller: myControllerUsuario,
                   keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     labelStyle: const TextStyle(
                       color: Colors.white70,
                     ),
-                    labelText: 'Usuario',
+                    labelText: 'Usuario de empresa',
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: const BorderSide(
@@ -72,7 +60,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                  controller: myControllerPassword,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
                   style: const TextStyle(color: Colors.white),
@@ -135,12 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: MaterialButton(
                     onPressed: () {
-                      //getUserPass(myControllerUsuario.text, myControllerPassword.text);
-                      //getLogin(myControllerUsuario.text, myControllerPassword.text);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const MyStatefulWidget()),
+                            builder: (context) => const Profilebusiness()),
                       );
                     },
                     color: const Color(0xffF4A53C),
@@ -161,11 +146,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Loginbusiness()),
+                              builder: (context) => const LoginScreen()),
                         );
                       },
                       child: const Text(
-                        '¿Eres una tienda? Ingresa aquí',
+                        '¿Usuario? Ingresa aquí',
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 12.0,

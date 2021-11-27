@@ -49,8 +49,7 @@ class _RecoverpassState extends State<Recoverpass> {
         padding: const EdgeInsets.all(50),
         child: Center(
           child: TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            obscureText: true,
+            keyboardType: TextInputType.emailAddress,            
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
               labelStyle: const TextStyle(
